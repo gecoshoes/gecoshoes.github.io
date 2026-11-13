@@ -565,7 +565,7 @@ footer img{width:64px;height:64px;border-radius:50%}
     <div class="reels" id="reels" role="group" aria-label="Elige el video"><button type="button" data-v="0" aria-pressed="true">Moka · negra</button><button type="button" data-v="1" aria-pressed="false">Texana Soul · puesta</button><button type="button" data-v="2" aria-pressed="false">Sakura · 5 colores</button></div>
     <div class="cine">
       <div class="video-marco aparece">
-        <video id="video" src="video/moka-negra-v9.mp4" poster="img/moka-negra-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video de las botas Moka negras: no pasan desapercibidas"></video>
+        <video id="video" src="video/moka-negra-v9-musica.mp4" poster="img/moka-negra-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video de las botas Moka negras: no pasan desapercibidas"></video>
         <button class="sonido presionable" id="sonido" type="button">Activar sonido</button>
       </div>
       <div class="detalles" id="detalles">
@@ -905,7 +905,7 @@ footer img{width:64px;height:64px;border-radius:50%}
   // dos videos: la Texana puesta (sin sonido, hecho con IA a partir de la foto real) y la Sakura en sus colores
   // clips: [foto, título, texto, punto de enfoque, zoom] para los acercamientos de detalle
   const REELS = [
-    {ref: "M10", c: 2, src: "video/moka-negra-v9.mp4", poster: "img/moka-negra-poster.jpg", label: "Video de las botas Moka negras: no pasan desapercibidas", sonido: false,
+    {ref: "M10", c: 2, src: "video/moka-negra-v9-musica.mp4", poster: "img/moka-negra-poster.jpg", label: "Video de las botas Moka negras: no pasan desapercibidas", sonido: true,
      clips: [["img/detalle-estudio/moka-negro.jpg", "Caña alta", "Lisa, hasta la rodilla", "50% 50%", 1], ["img/modelo/moka-negro.jpg", "Puesta", "Se ven en ti", "50% 30%", 1], ["img/estudio/moka-negro.jpg", "Moka negra", "No pasan desapercibidas", "50% 50%", 1]]},
     {ref: "M09", c: 3, src: "video/texana-modelo.mp4", poster: "img/texana-modelo-poster.jpg", label: "Video de la bota Texana Soul negra puesta", sonido: false,
      clips: [["img/texana-det-bordado.jpg", "Bordado", "Hojas en hilo gris", "50% 50%", 1], ["img/texana-det-tacon.jpg", "Tacón", "En bloque, firme", "50% 50%", 1], ["img/texana-det-punta.jpg", "Punta fina", "Alarga la pierna", "50% 50%", 1]]},
