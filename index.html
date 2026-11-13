@@ -274,7 +274,8 @@ section{padding-block:64px 0}
 .hoja-precio{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
 .hoja-precio small{display:block;font-size:13px;font-weight:500;color:var(--tinta-suave)}
 .sin{border:1px dashed var(--linea);border-radius:18px;padding:22px;display:grid;gap:12px;justify-items:start;color:var(--tinta-suave)}
-.mas{display:flex;justify-content:center;margin-top:24px}
+.mas{display:flex;justify-content:center;margin-top:28px}
+.mas .btn-sec{flex:0 1 420px;padding:18px 24px;font-size:18px;font-weight:700;background:var(--tinta);color:var(--marmol);border-color:var(--tinta);box-shadow:0 10px 28px -10px color-mix(in oklab, var(--tinta) 55%, transparent)}
 
 /* ===== hoja de producto ===== */
 .velo{position:fixed;inset:0;z-index:40;background:rgba(28,14,17,.45);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
@@ -561,10 +562,10 @@ footer img{width:64px;height:64px;border-radius:50%}
       <p class="eyebrow">En movimiento</p>
       <h2 id="t-cine">Mírala caminar</h2>
     </div>
-    <div class="reels" id="reels" role="group" aria-label="Elige el video"><button type="button" data-v="0" aria-pressed="true">Texana Soul · puesta</button><button type="button" data-v="1" aria-pressed="false">Sakura · 5 colores</button><button type="button" data-v="2" aria-pressed="false">Moka · negra</button></div>
+    <div class="reels" id="reels" role="group" aria-label="Elige el video"><button type="button" data-v="0" aria-pressed="true">Moka · negra</button><button type="button" data-v="1" aria-pressed="false">Texana Soul · puesta</button><button type="button" data-v="2" aria-pressed="false">Sakura · 5 colores</button></div>
     <div class="cine">
       <div class="video-marco aparece">
-        <video id="video" src="video/texana-modelo.mp4" poster="img/texana-modelo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video de la bota Texana Soul negra puesta"></video>
+        <video id="video" src="video/moka-negra-v9.mp4" poster="img/moka-negra-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video de las botas Moka negras: no pasan desapercibidas"></video>
         <button class="sonido presionable" id="sonido" type="button">Activar sonido</button>
       </div>
       <div class="detalles" id="detalles">
@@ -904,11 +905,11 @@ footer img{width:64px;height:64px;border-radius:50%}
   // dos videos: la Texana puesta (sin sonido, hecho con IA a partir de la foto real) y la Sakura en sus colores
   // clips: [foto, título, texto, punto de enfoque, zoom] para los acercamientos de detalle
   const REELS = [
+    {ref: "M10", c: 2, src: "video/moka-negra-v9.mp4", poster: "img/moka-negra-poster.jpg", label: "Video de las botas Moka negras: no pasan desapercibidas", sonido: false,
+     clips: [["img/detalle-estudio/moka-negro.jpg", "Caña alta", "Lisa, hasta la rodilla", "50% 50%", 1], ["img/modelo/moka-negro.jpg", "Puesta", "Se ven en ti", "50% 30%", 1], ["img/estudio/moka-negro.jpg", "Moka negra", "No pasan desapercibidas", "50% 50%", 1]]},
     {ref: "M09", c: 3, src: "video/texana-modelo.mp4", poster: "img/texana-modelo-poster.jpg", label: "Video de la bota Texana Soul negra puesta", sonido: false,
      clips: [["img/texana-det-bordado.jpg", "Bordado", "Hojas en hilo gris", "50% 50%", 1], ["img/texana-det-tacon.jpg", "Tacón", "En bloque, firme", "50% 50%", 1], ["img/texana-det-punta.jpg", "Punta fina", "Alarga la pierna", "50% 50%", 1]]},
-    {ref: "S01", c: 0, src: "video/sakura-vertical.mp4", poster: "img/vino.jpg", label: "Video de la bota Sakura en sus 5 colores", sonido: true, clips: null},
-    {ref: "M10", c: 2, src: "video/moka-negra-v9.mp4", poster: "img/moka-negra-poster.jpg", label: "Video de las botas Moka negras: no pasan desapercibidas", sonido: false,
-     clips: [["img/detalle-estudio/moka-negro.jpg", "Caña alta", "Lisa, hasta la rodilla", "50% 50%", 1], ["img/modelo/moka-negro.jpg", "Puesta", "Se ven en ti", "50% 30%", 1], ["img/estudio/moka-negro.jpg", "Moka negra", "No pasan desapercibidas", "50% 50%", 1]]}
+    {ref: "S01", c: 0, src: "video/sakura-vertical.mp4", poster: "img/vino.jpg", label: "Video de la bota Sakura en sus 5 colores", sonido: true, clips: null}
   ];
   const reelBtns = $$("#reels button"), detalles = $("#detalles"), detSakura = detalles.innerHTML;
   let reel = 0;
