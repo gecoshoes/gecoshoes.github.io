@@ -57,7 +57,7 @@
 :root[data-theme="dark"]{ --marmol:#1C1214; --marmol-2:#261A1C; --tinta:#F6E6E3; --tinta-suave:#C4A9AC; --bronce:#D4A56E; --oro:#D4A56E; --papel:#241719; --wa:#2FA56A; --sombra:rgba(0,0,0,.5); --tono-txt:color-mix(in oklab, var(--tono) 40%, #F6E6E3); color-scheme:dark }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;max-width:100%}
 body{margin:0;background:var(--marmol);color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
   padding-left:var(--gl);padding-right:var(--gr);padding-block:0 96px;overflow-x:hidden;
   background-image:radial-gradient(120% 50% at 50% 0%, color-mix(in oklab, var(--tono) 16%, transparent), transparent 70%);background-repeat:no-repeat;transition:background-color .6s}
@@ -127,7 +127,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .escena{position:relative;z-index:1;max-width:480px;width:100%;margin-inline:auto;aspect-ratio:4/5;margin-top:clamp(40px, 11vw, 90px)}
 @media (max-width:760px){.escena{width:min(100%,calc(42svh * .8));margin-top:clamp(24px,6vw,40px)}.pasarela .datos{display:none}.hero-wa{display:none}}
 .nombre-gigante{position:absolute;left:0;right:0;top:0;transform:translateY(-54%);z-index:2;text-align:center;pointer-events:none;
-  font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(84px, 28vw, 200px);line-height:.8;letter-spacing:-.04em;
+  font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(56px, 17vw, 170px);line-height:.8;letter-spacing:-.04em;white-space:nowrap;overflow:hidden;
   color:var(--tono-txt);text-shadow:0 2px 24px color-mix(in oklab, var(--marmol) 70%, transparent);transition:color .6s}
 .nombre-gigante span{display:inline-block;transition:transform .35s var(--ease-out), opacity .3s var(--ease-out), filter .3s}
 .nombre-gigante.cambia span{transform:translateY(14%);opacity:0;filter:blur(6px)}
@@ -755,6 +755,13 @@ footer img{width:64px;height:64px;border-radius:50%}
   let idx = 0, t0 = performance.now(), pausado = reduce;
   const DUR = 4200, barras = $$("#historia i"), imgsDest = $$("#foto img"), gigante = $("#nombre-gigante");
   let tNombre = 0;
+  // ajusta el nombre gigante al ancho de la foto para que nunca se salga de la pantalla
+  function ajustarNombre(){
+    gigante.style.fontSize = "";
+    const sp = gigante.firstChild; const w = gigante.clientWidth; if (!w) return;
+    const r = document.createRange(); r.selectNodeContents(sp); const tw = r.getBoundingClientRect().width;
+    if (tw > w * .98) gigante.style.fontSize = (parseFloat(getComputedStyle(gigante).fontSize) * w * .98 / tw) + "px";
+  }
   function pintar(i){
     const cambio = i !== idx; idx = i; const h = HISTORIAS[i], p = porRef(h.ref), c = p.colores[h.c];
     document.documentElement.style.setProperty("--tono", h.tono);
@@ -762,8 +769,8 @@ footer img{width:64px;height:64px;border-radius:50%}
     if (cambio && !reduce){
       gigante.classList.add("cambia");
       clearTimeout(tNombre);
-      tNombre = setTimeout(() => { gigante.firstChild.textContent = h.corto; gigante.classList.remove("cambia"); }, 160);
-    } else { clearTimeout(tNombre); gigante.classList.remove("cambia"); gigante.firstChild.textContent = h.corto; }
+      tNombre = setTimeout(() => { gigante.firstChild.textContent = h.corto; ajustarNombre(); gigante.classList.remove("cambia"); }, 160);
+    } else { clearTimeout(tNombre); gigante.classList.remove("cambia"); gigante.firstChild.textContent = h.corto; ajustarNombre(); }
     $("#d-titulo").innerHTML = esc(h.nombre || p.nombre) + ", <em>" + esc(h.lema) + "</em>";
     $("#d-datos").innerHTML = [p.nuevo ? "Nueva" : "", p.g === "ninas" ? "Para niña" : "", p.tallas ? "Tallas " + p.tallas : "", p.colores.length > 1 ? p.colores.length + " colores" : "", "Pagas al recibir"].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join("");
     $("#d-precio").innerHTML = p.precio ? "<b>" + pesos(p.precio) + "</b> · Bogotá: envío gratis y pagas al recibir" : "<b>Precio por WhatsApp</b>";
@@ -812,7 +819,7 @@ footer img{width:64px;height:64px;border-radius:50%}
   })();
   $$("#muestras .muestra").forEach(b => b.addEventListener("click", () => { pintar(+b.dataset.i); marcar(); ponerPausa(true); }));
   $("#dest-agregar").addEventListener("click", () => abrir(porRef(HISTORIAS[idx].ref), HISTORIAS[idx].c));
-  pintar(0); requestAnimationFrame(tick); if (reduce) ponerPausa(true);
+  pintar(0); if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarNombre); addEventListener("resize", ajustarNombre); requestAnimationFrame(tick); if (reduce) ponerPausa(true);
   setTimeout(() => $("#desliza").classList.add("fuera"), 6000);
 
   /* ---------- pétalos que caen en toda la página y se apartan del dedo ---------- */
