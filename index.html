@@ -561,7 +561,7 @@ footer img{width:64px;height:64px;border-radius:50%}
       <p class="eyebrow">En movimiento</p>
       <h2 id="t-cine">Mírala caminar</h2>
     </div>
-    <div class="reels" id="reels" role="group" aria-label="Elige el video"><button type="button" data-v="0" aria-pressed="true">Texana Soul · puesta</button><button type="button" data-v="1" aria-pressed="false">Sakura · 5 colores</button></div>
+    <div class="reels" id="reels" role="group" aria-label="Elige el video"><button type="button" data-v="0" aria-pressed="true">Texana Soul · puesta</button><button type="button" data-v="1" aria-pressed="false">Sakura · 5 colores</button><button type="button" data-v="2" aria-pressed="false">Moka · negra</button></div>
     <div class="cine">
       <div class="video-marco aparece">
         <video id="video" src="video/texana-modelo.mp4" poster="img/texana-modelo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video de la bota Texana Soul negra puesta"></video>
@@ -897,7 +897,9 @@ footer img{width:64px;height:64px;border-radius:50%}
   const REELS = [
     {ref: "M09", c: 3, src: "video/texana-modelo.mp4", poster: "img/texana-modelo-poster.jpg", label: "Video de la bota Texana Soul negra puesta", sonido: false,
      clips: [["img/texana-det-bordado.jpg", "Bordado", "Hojas en hilo gris", "50% 50%", 1], ["img/texana-det-tacon.jpg", "Tacón", "En bloque, firme", "50% 50%", 1], ["img/texana-det-punta.jpg", "Punta fina", "Alarga la pierna", "50% 50%", 1]]},
-    {ref: "S01", c: 0, src: "video/sakura-vertical.mp4", poster: "img/vino.jpg", label: "Video de la bota Sakura en sus 5 colores", sonido: true, clips: null}
+    {ref: "S01", c: 0, src: "video/sakura-vertical.mp4", poster: "img/vino.jpg", label: "Video de la bota Sakura en sus 5 colores", sonido: true, clips: null},
+    {ref: "M10", c: 2, src: "video/moka-negra-v9.mp4", poster: "img/moka-negra-poster.jpg", label: "Video de las botas Moka negras: no pasan desapercibidas", sonido: false,
+     clips: [["img/detalle-estudio/moka-negro.jpg", "Caña alta", "Lisa, hasta la rodilla", "50% 50%", 1], ["img/modelo/moka-negro.jpg", "Puesta", "Se ven en ti", "50% 30%", 1], ["img/estudio/moka-negro.jpg", "Moka negra", "No pasan desapercibidas", "50% 50%", 1]]}
   ];
   const reelBtns = $$("#reels button"), detalles = $("#detalles"), detSakura = detalles.innerHTML;
   let reel = 0;
