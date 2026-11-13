@@ -752,7 +752,7 @@ footer img{width:64px;height:64px;border-radius:50%}
     hist.insertAdjacentHTML("beforeend", "<span><i></i></span>");
     $("#muestras").insertAdjacentHTML("beforeend", `<button class="muestra" type="button" data-i="${i}" aria-pressed="${i===0}"><span class="chip" style="background:url('${h.foto}') ${h.pos || "50% 60%"}/cover"></span><span>${esc(h.corto)}</span></button>`);
   });
-  let idx = 0, t0 = performance.now(), pausado = reduce;
+  let idx = 0, t0 = performance.now(), pausado = false; // las historias avanzan solas aunque el celular tenga "reducir movimiento" (solo cambian con fundido)
   const DUR = 4200, barras = $$("#historia i"), imgsDest = $$("#foto img"), gigante = $("#nombre-gigante");
   let tNombre = 0;
   // ajusta el nombre gigante al ancho de la foto para que nunca se salga de la pantalla
@@ -819,7 +819,9 @@ footer img{width:64px;height:64px;border-radius:50%}
   })();
   $$("#muestras .muestra").forEach(b => b.addEventListener("click", () => { pintar(+b.dataset.i); marcar(); ponerPausa(true); }));
   $("#dest-agregar").addEventListener("click", () => abrir(porRef(HISTORIAS[idx].ref), HISTORIAS[idx].c));
-  pintar(0); if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarNombre); addEventListener("resize", ajustarNombre); requestAnimationFrame(tick); if (reduce) ponerPausa(true);
+  pintar(0); if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarNombre); addEventListener("resize", ajustarNombre); requestAnimationFrame(tick);
+  // respaldo: si el navegador del celular frena las animaciones, un temporizador normal también pasa las historias
+  setInterval(() => { if (!pausado && !document.hidden && performance.now() - t0 > DUR + 600){ const n = (idx + 1) % HISTORIAS.length; t0 = performance.now(); if (n === 0){ barras.forEach(b => b.style.width = "0"); ponerPausa(true); } pintar(n); marcar(); } }, 500);
   setTimeout(() => $("#desliza").classList.add("fuera"), 6000);
 
   /* ---------- pétalos que caen en toda la página y se apartan del dedo ---------- */
