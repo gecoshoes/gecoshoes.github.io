@@ -25,7 +25,8 @@
   precio: en pesos, sin puntos (170000). Si no tiene precio, la página dice "Precio por WhatsApp" (las de proveedores P01–P56 y Q01–Q15, 2026-11-07, van sin precio hasta confirmarlo)
   colores: n (nombre), c (color del punto), fam (familia para el filtro), src y foto (foto Ivory con marca de agua, img/ivory), det (detalle real), orig (foto original). modelo: {src, color} foto con la modelo Geco de la referencia; cada color puede tener su propia modelo: "modelo": "img/modelo/<ref>-<color>.jpg" dentro del color
 -->
-<script type="application/json" id="catalogo">[
+<script type="application/json" id="catalogo">
+[
   {
     "ref": "S01",
     "modelo": {
@@ -592,6 +593,15 @@
         "orig": "img/proveedor/web/mi-042-c.webp",
         "det": "img/detalle-estudio/dakc-rojo.jpg",
         "modelo": "img/modelo/dakc-rojo.jpg"
+      },
+      {
+        "n": "Blanco charol",
+        "c": "linear-gradient(135deg,#f4f4f4 40%,#ffffff 50%,#dcdcdc 60%)",
+        "fam": "Blanco",
+        "src": "img/estudio/dakc-blanco.jpg",
+        "foto": "img/estudio/dakc-blanco.jpg",
+        "det": "img/detalle-estudio/dakc-blanco.jpg",
+        "modelo": "img/modelo/dakc-blanco.jpg"
       }
     ],
     "modelo": {
@@ -2965,6 +2975,16 @@
         "src": "img/estudio/chloe-negro-e.jpg",
         "modelo": "img/modelo/chloe-negro-e.jpg",
         "det": "img/detalle-estudio/chloe-negro-g.jpg"
+      },
+      {
+        "n": "Beige",
+        "c": "#C9AE8E",
+        "fam": "Beige",
+        "orig": "img/proveedor/web/chloe-beige-real.webp",
+        "foto": "img/estudio/chloe-beige.jpg",
+        "src": "img/estudio/chloe-beige.jpg",
+        "modelo": "img/modelo/chloe-beige.jpg",
+        "det": "img/detalle-estudio/chloe-beige.jpg"
       }
     ],
     "modelo": {
@@ -3505,7 +3525,8 @@
     },
     "precio": 170000
   }
-]</script>
+]
+</script>
 
 <style>
 /* Layout: pasarela vertical. Arriba, historias con 5 botas distintas (HISTORIAS en el script), cada una tiñe la página de su tono; después la colección (con precios), el buscador, la vitrina que gira, el video, el pedido, el envío y el pie con GECO en pétalos. Todas las botas viven en el mismo "estudio" (fondo crema con aro dorado). */
