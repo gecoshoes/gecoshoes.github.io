@@ -3805,10 +3805,9 @@ section{padding-block:64px 0}
 .hoja-precio{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
 .hoja-precio small{display:block;font-size:13px;font-weight:500;color:var(--tinta-suave)}
 .sin{border:1px dashed var(--linea);border-radius:18px;padding:22px;display:grid;gap:12px;justify-items:start;color:var(--tinta-suave)}
-.mas{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:32px;padding:26px 16px;border:2px solid #8E1F2B;border-radius:24px;background:color-mix(in oklab, var(--rosa) 35%, var(--papel));text-align:center}
+.mas{display:flex;justify-content:center;margin-top:28px}
 .mas[hidden]{display:none}
-.mas-txt{margin:0;font-family:var(--display);font-size:clamp(22px,6vw,30px);line-height:1.15;font-weight:700;color:#8E1F2B}
-.mas-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:420px;min-height:60px;border:0;border-radius:999px;background:#8E1F2B;color:#fff;font:inherit;font-weight:700;font-size:19px;cursor:pointer;box-shadow:0 8px 22px var(--sombra)}
+.mas .btn-sec{flex:0 1 420px;padding:18px 24px;font-size:18px;font-weight:700;background:var(--tinta);color:var(--marmol);border-color:var(--tinta);box-shadow:0 10px 28px -10px color-mix(in oklab, var(--tinta) 55%, transparent)}
 
 /* ===== hoja de producto ===== */
 .velo{position:fixed;inset:0;z-index:40;background:rgba(28,14,17,.45);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
@@ -4138,10 +4137,7 @@ footer .pie-wa{margin:4px auto 6px;min-height:48px}
       <p class="conteo" id="conteo" aria-live="polite"></p>
     </div>
     <div class="grilla" id="grilla"></div>
-    <div class="mas" id="mas" hidden>
-      <p class="mas-txt" id="mas-txt" aria-live="polite"></p>
-      <button class="mas-btn presionable" type="button" id="ver-mas">Ver más botas <span aria-hidden="true">↓</span></button>
-    </div>
+    <div class="mas" id="mas" hidden><button class="btn-sec presionable" type="button" id="ver-mas">Ver más botas</button></div>
   </section>
 
   <section id="vitrina" hidden class="vitrina-sec" aria-labelledby="t-vit">
@@ -4620,7 +4616,6 @@ footer .pie-wa{margin:4px auto 6px;min-height:48px}
     activarTarjetas($("#grilla"));
     const lim = $("#limpiar"); if (lim) lim.addEventListener("click", () => { f.estilo = "Todas"; f.color = null; f.q = ""; $("#q").value = ""; render(); });
     $("#mas").hidden = lista.length <= mostrados;
-    $("#mas-txt").textContent = `¡Hay más botas! Estás viendo ${Math.min(mostrados, lista.length)} de ${lista.length}`;
   }
   $$("#pestanas button").forEach(b => b.addEventListener("click", () => { f.g = b.dataset.g; mostrados = POR_PAGINA; render(); }));
   $$("[data-ir]").forEach(a => a.addEventListener("click", () => { f.g = a.dataset.ir; render(); }));
